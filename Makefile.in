@@ -1,0 +1,28 @@
+CC=gcc -c
+LD=gcc
+GDB=gdb
+AR=ar
+
+BUILD_DIR=$(CURDIR)/build
+SRC_DIR=src
+MOTOR_SRC_DIR=$(SRC_DIR)/Motor
+EDITOR_SRC_DIR=$(SRC_DIR)/Editor
+
+MOTOR_SRC=$(shell pushd  $(MOTOR_SRC_DIR)  > /dev/null; find . -name '*.c';popd > /dev/null)
+MOTOR_OBJ=$(MOTOR_SRC:%=$(BUILD_DIR)/%.o)
+
+EDITOR_SRC=$(shell pushd $(EDITOR_SRC_DIR) > /dev/null; find . -name '*.c';popd > /dev/null)
+EDITOR_OBJ=$(EDITOR_SRC:%=$(BUILD_DIR)/%.o)
+
+HDRS=
+MOTOR_LIBS=-lSDL2
+EDITOR_LIBS=-lSDL2
+
+EDITOR_CFLAGS=-Wall -Wextra -g -I$(MOTOR_SRC_DIR)
+MOTOR_CFLAGS=-Wall -Wextra -g
+
+
+EDITOR=ChuckMaurice
+MOTOR=ChuckMauriceau.a
+
+export

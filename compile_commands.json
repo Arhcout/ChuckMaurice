@@ -1,0 +1,33 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./ChuckMauriceau.c.o",
+      "ChuckMauriceau.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/ChuckMauriceau.c",
+    "output": "/home/me/Proj/Maurice/build/ChuckMauriceau.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-Isrc/Motor",
+      "-o",
+      "/home/me/Proj/Maurice/build/./main.c.o",
+      "main.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Editor",
+    "file": "/home/me/Proj/Maurice/src/Editor/main.c",
+    "output": "/home/me/Proj/Maurice/build/main.c.o"
+  }
+]
