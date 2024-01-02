@@ -1,6 +1,9 @@
-#include <stdio.h>
+#include "ChuckMauriceau.h"
 
 int main(void){
-  printf("Hello world");
+  if(CM_Init() == CM_OK)
+    CM_Run();
+
+  CM_Quit();
   return 0;
 }

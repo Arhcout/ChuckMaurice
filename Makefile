@@ -1,13 +1,10 @@
 include Makefile.in
 
-.PHONY: all clean debug_ed debug_mo editor motor 
+.PHONY: all clean debug_ed editor motor
 
 all: motor editor
 
 debug_ed: editor
-	@$(GDB) $(EDITOR)
-
-debug_mo: motor
 	@$(GDB) $(EDITOR)
 
 editor: $(EDITOR)
@@ -18,13 +15,13 @@ clean:
 	rm -f $(EDITOR)
 	rm -f $(MOTOR)
 
-$(EDITOR):
+$(EDITOR): 
 	$(MAKE) -C $(EDITOR_SRC_DIR)
-	@echo !== LINKING $^ ==!
-	$(LD) $(LDFLAGS) $(EDITOR_OBJ) -o $@ $(LIBS) $(MOTOR)
+	@echo !== LINKING ==!
+	$$HOME/opt/SDL2/bin/sdl2-config --libs
+	$(LD) $(LDFLAGS) $(EDITOR_OBJ) -o $@ $(EDITOR_LIBS) $(MOTOR)
 
-$(MOTOR):
+$(MOTOR): 
 	$(MAKE) -C $(MOTOR_SRC_DIR)
-	@echo !== CREATING ARCHIVE $^ ==!
+	@echo !== CREATING ARCHIVE ==!
 	$(AR) -ru $@ $(MOTOR_OBJ)
-

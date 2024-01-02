@@ -7,6 +7,21 @@
       "-Wextra",
       "-g",
       "-o",
+      "/home/me/Proj/Maurice/build/./Window.c.o",
+      "Window.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Window.c",
+    "output": "/home/me/Proj/Maurice/build/Window.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
       "/home/me/Proj/Maurice/build/./ChuckMauriceau.c.o",
       "ChuckMauriceau.c"
     ],
@@ -21,7 +36,7 @@
       "-Wall",
       "-Wextra",
       "-g",
-      "-Isrc/Motor",
+      "-I/home/me/Proj/Maurice/src/Motor",
       "-o",
       "/home/me/Proj/Maurice/build/./main.c.o",
       "main.c"

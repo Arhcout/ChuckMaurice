@@ -1,5 +1,5 @@
 *.o
 *.a
-compile_commands.json
+*.idx
 ChuckMaurice
 ChuckMauriceau.a
