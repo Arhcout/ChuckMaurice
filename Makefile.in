@@ -15,7 +15,7 @@ EDITOR_SRC=$(shell pushd $(EDITOR_SRC_DIR) > /dev/null; find . -name '*.c';popd 
 EDITOR_OBJ=$(EDITOR_SRC:%=$(BUILD_DIR)/%.o)
 
 HDRS=
-EDITOR_LIBS=$(shell $$HOME/opt/SDL2/bin/sdl2-config --libs) -lSDL2_mixer
+EDITOR_LIBS=$(shell $$HOME/opt/SDL2/bin/sdl2-config --libs) -lSDL2_mixer -lSDL2_image
 
 EDITOR_CFLAGS=$(shell $$HOME/opt/SDL2/bin/sdl2-config --cflags) -Wall -Wextra -g -I$(CURDIR)/$(MOTOR_SRC_DIR)
 MOTOR_CFLAGS=-Wall -Wextra -g

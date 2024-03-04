@@ -1,4 +1,5 @@
 #include "ChuckMauriceau.h"
+#include <stdio.h>
 
 int main(void){
   if(CM_Init() == CM_OK)

@@ -1,86 +1,120 @@
 #include "Ressource.h"
-#include "Error.h"
-#include "Vector.h"
+#include "Window.h"
+#include <SDL2/SDL_render.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_image.h>
 #include <string.h>
 
-static CM_VectorInfo* _res;
+static struct CM_Resource** _res;
 
-CM_Error CM_Resource_Init(){
-  _res = CM_Vector_Init(sizeof(CM_Resource*));
+enum CM_Error CM_InitResource(){
+  _res = InitArray(struct CM_Resource*, 32);
   return CM_OK;
 }
 
-static CM_Error _LoadWAW(char* path, CM_Resource* out_data){
+static enum CM_Error _LoadWAW(char* path, struct CM_Resource* out_data){
   out_data->data = Mix_LoadWAV(path);
   if(out_data->data == NULL){
-    CM_ERROR("Can't open path:");
-    fprintf(stderr, "%s\n", path);
+    CM_ERROR("Can't open path: %s\n", path);
     return CM_BAD;
   }
   return CM_OK;
 }
 
-CM_Error CM_Resource_Load(char* path, CM_Resource**  out_data){
-  *out_data = malloc(sizeof(CM_Resource));
-  if (!out_data) {
+enum CM_Error CM_LoadResource(char* path, struct CM_Resource**  out_data){
+  *out_data = malloc(sizeof(struct CM_Resource));
+  if (!*out_data) {
     CM_MALLOC_ERROR;
     return CM_BAD;
   }
+  struct CM_Resource* _out_data = *out_data;
 
   char* ext = path;
   while(*ext != '.') ext++;
+
+  //!== PNG/JPG ==!
+  if(strncmp(ext, ".png", 1024) == 0 || strncmp(ext, ".jpg", 1024) == 0){
+    _out_data->type = CM_RESOURCE_IMAGE;
+    // Geting the renderer
+    SDL_Renderer* ren;
+    if(CM_GetRenderer(&ren) == CM_BAD){
+      CM_ERROR("Can't get renderer");
+      free(_out_data);
+      _out_data = NULL;
+      return CM_BAD;
+    }
   
-  if(strncmp(ext, ".waw", 1024) == 0){
-    (*out_data)->type = CM_RESOURCE_SOUND;
+    // Load the texture
+    _out_data->data = IMG_LoadTexture(ren, path);
+    if(_out_data->data == NULL){
+      CM_ERROR("Can't load image %s: %s", path, IMG_GetError());
+      free(_out_data);
+      _out_data = NULL;
+      return CM_BAD;
+    }
+
+    // Setup the metadata
+    _out_data->metaData = malloc(sizeof(struct CM_ImageMeta));
+    struct CM_ImageMeta* meta = _out_data->metaData;
+    SDL_QueryTexture(_out_data->data, NULL, NULL, &meta->dim.x, &meta->dim.y);
+  }
+  //!== WAW ==!
+  else if(strncmp(ext, ".waw", 1024) == 0){
+    _out_data->type = CM_RESOURCE_SOUND;
     // load audio
-    if(_LoadWAW(path, *out_data) == CM_BAD){
-      free(*out_data);
-      *out_data = NULL;
+    if(_LoadWAW(path, _out_data) == CM_BAD){
+      free(_out_data);
+      _out_data = NULL;
       return CM_BAD;
     }
 
     // allocate audio metadata
-    (*out_data)->metaData = malloc(sizeof(CM_Resource_AudioMeta));
-    if (!(*out_data)->metaData) {
+    _out_data->metaData = malloc(sizeof(struct CM_AudioMeta));
+    // Error check
+    if (!_out_data->metaData) {
       CM_MALLOC_ERROR;
-      free(*out_data);
-      *out_data = NULL;
+      free(_out_data);
+      _out_data = NULL;
       return CM_BAD;
     }
   }
   else {
-    CM_WARNING("Type not implemented");
+    CM_WARNING("Type not implemented\n");
     return CM_WARN;
   }
 
 
-  CM_Vector_Push(_res, out_data);
+  ArrayPush(_res, out_data);
   return CM_OK;
 }
 
-CM_VectorInfo* CM_Resource_GetResources(){
+struct CM_Resource** CM_GetResources(){
   return _res;
 }
 
-void CM_Resource_Clean(){
-  for(size_t i = 0; i < _res->len; i++){
-    CM_Resource* res = CM_Vector_GetVal(_res,CM_Resource*,i);
-    switch (res->type) {
+void CM_CleanResource(){
+  for(size_t i = 0; i < GetArrayLen(_res); i++){
+    switch (_res[i]->type) {
       case CM_RESOURCE_SOUND:
-        Mix_FreeChunk(res->data);
-        if(res->metaData) free(res->metaData);
-        free(res);
+        Mix_FreeChunk(_res[i]->data);
+        free(_res[i]->metaData);
+        free(_res[i]);
         break;
+      
+      case CM_RESOURCE_IMAGE:
+        SDL_DestroyTexture(_res[i]->data);
+        // free(_res[i]->metaData);
+        free(_res[i]);
+        
     }
-    CM_Vector_Remove(_res, i);
+    ArrayRemove(_res, i);
   }
 }
 
-void CM_Resource_Quit(){
-  CM_Resource_Clean();
-  CM_Vector_Destroy(_res);
+void CM_DestroyResource(){
+  CM_CleanResource();
+  DestroyArray(_res);
 }
 

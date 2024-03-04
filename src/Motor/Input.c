@@ -1,19 +1,19 @@
 #include "Input.h"
+#include <assert.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
 static bool _keys[322];
 
-void CM_Input_Init(){
+void CM_InputInit(){
   memset(_keys, false, 322*sizeof(bool));
 }
 
-CM_Error CM_Input_Poll(SDL_Event* event){
-  if(event == NULL){
-    fprintf(stderr, "%s:%s:%d: event Can't be null!\n",__FILE__,__func__,__LINE__);
-    return CM_BAD;
-  }
+enum CM_Error CM_InputPoll(SDL_Event* event){
+  assert(event != NULL);
+
   switch (event->type) {
     case SDL_KEYDOWN:
       _keys[event->key.keysym.sym % 322] = true;
@@ -26,15 +26,16 @@ CM_Error CM_Input_Poll(SDL_Event* event){
   return CM_OK;
 }
 
-bool CM_Input_IsKeyDown(SDL_KeyCode key){
+bool CM_IsKeyDown(SDL_KeyCode key){
   return _keys[key];
 }
 
-void CM_Input_GetMousePosition(int* out_x, int* out_y){
-  SDL_GetMouseState(out_x, out_y);
+void CM_GetMousePosition(struct CM_Veci2* out_mousePos){
+  assert(out_mousePos != NULL);
+  SDL_GetMouseState(&out_mousePos->x, &out_mousePos->y);
 }
 
-bool CM_Input_GetButtonState(CM_Input_MouseButtons button){
-  return SDL_GetMouseState(NULL, NULL) == SDL_BUTTON(button);
+bool CM_GetButtonState(enum CM_MouseButtons button){
+  return SDL_GetMouseState(NULL, NULL) == (uint32_t)SDL_BUTTON(button);
 }
 

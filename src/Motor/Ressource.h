@@ -1,28 +1,39 @@
 #pragma once
 #include "Error.h"
-#include "Vector.h"
+#include "Vec.h"
+#include "Array.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
 
-typedef enum CM_Resource_Type_e{
+enum CM_ResourceType{
   CM_RESOURCE_SOUND,
   CM_RESOURCE_IMAGE,
-}CM_Resource_Type;
+};
 
-typedef struct CM_Resource_s{
+struct CM_Resource{
   int type;
   void* metaData;
   void* data;
-}CM_Resource;
+};
 
-typedef struct CM_Resource_AudioMeta_s{
+struct CM_AudioMeta{
   int channel;
   bool isPlaying;
-}CM_Resource_AudioMeta;
+};
 
-CM_Error CM_Resource_Init();
-void CM_Resource_Clean();
-void CM_Resource_Quit();
-CM_Error CM_Resource_Load(char* path, CM_Resource**  out_data);
-CM_VectorInfo* CM_Resource_GetResources();
+struct CM_ImageMeta{
+  struct CM_Veci2 dim;
+};
+
+/*
+ * Audio: data -> Mix_Chunck*
+ *        metadata -> exist
+ * Image: data -> SDL_Texture*
+ *        metadata -> exist
+ */
+enum CM_Error CM_InitResource();
+void CM_CleanResource();
+void CM_DestroyResource();
+enum CM_Error CM_LoadResource(char* path, struct CM_Resource**  out_data);
+struct CM_Resource** CM_GetResources();

@@ -7,12 +7,162 @@
       "-Wextra",
       "-g",
       "-o",
+      "/home/me/Proj/Maurice/build/./Input.c.o",
+      "Input.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Input.c",
+    "output": "/home/me/Proj/Maurice/build/Input.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Camera.c.o",
+      "Camera.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Camera.c",
+    "output": "/home/me/Proj/Maurice/build/Camera.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Time.c.o",
+      "Time.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Time.c",
+    "output": "/home/me/Proj/Maurice/build/Time.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Audio.c.o",
+      "Audio.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Audio.c",
+    "output": "/home/me/Proj/Maurice/build/Audio.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Array.c.o",
+      "Array.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Array.c",
+    "output": "/home/me/Proj/Maurice/build/Array.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
       "/home/me/Proj/Maurice/build/./Window.c.o",
       "Window.c"
     ],
     "directory": "/home/me/Proj/Maurice/src/Motor",
     "file": "/home/me/Proj/Maurice/src/Motor/Window.c",
     "output": "/home/me/Proj/Maurice/build/Window.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Entity.c.o",
+      "Entity.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Entity.c",
+    "output": "/home/me/Proj/Maurice/build/Entity.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Component/Test.c.o",
+      "Component/Test.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Component/Test.c",
+    "output": "/home/me/Proj/Maurice/build/Component/Test.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Ressource.c.o",
+      "Ressource.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Ressource.c",
+    "output": "/home/me/Proj/Maurice/build/Ressource.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./hashmap/hashmap.c.o",
+      "hashmap/hashmap.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/hashmap/hashmap.c",
+    "output": "/home/me/Proj/Maurice/build/hashmap/hashmap.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Player.c.o",
+      "Player.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Player.c",
+    "output": "/home/me/Proj/Maurice/build/Player.c.o"
   },
   {
     "arguments": [
@@ -33,6 +183,23 @@
     "arguments": [
       "/usr/bin/gcc",
       "-c",
+      "-Wall",
+      "-Wextra",
+      "-g",
+      "-o",
+      "/home/me/Proj/Maurice/build/./Renderer.c.o",
+      "Renderer.c"
+    ],
+    "directory": "/home/me/Proj/Maurice/src/Motor",
+    "file": "/home/me/Proj/Maurice/src/Motor/Renderer.c",
+    "output": "/home/me/Proj/Maurice/build/Renderer.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I/home/me/opt/SDL2/include/SDL2",
+      "-D_REENTRANT",
       "-Wall",
       "-Wextra",
       "-g",
