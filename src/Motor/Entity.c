@@ -35,14 +35,14 @@ enum CM_Error CM_InitEntities(){
   {
     struct CM_Entity* entity;
     void* cmp;
-    if(CM_InitEntity((struct CM_Vecd2){300, -50},(struct CM_Vecd2){10, 10}, 0, sprite1, (struct CM_Veci2){16,16}, 0, &entity)) return CM_BAD;
+    if(CM_InitEntity((struct CM_Vecd2){300, -50},(struct CM_Vecd2){10, 10}, 1, sprite1, (struct CM_Veci2){16,16}, 4, .5, &entity)) return CM_BAD;
     if(CM_InitTestCmp((struct CM_TestComponent**)&cmp, 78)) return CM_BAD;
     ArrayPush(entity->components, &cmp);
   }
   {
     struct CM_Entity* entity;
     void* cmp;
-    if(CM_InitEntity((struct CM_Vecd2){-300, 50},(struct CM_Vecd2){.5, .5}, 0, sprite2, ((struct CM_ImageMeta*)sprite2->metaData)->dim, 0, &entity)) return CM_BAD;
+    if(CM_InitEntity((struct CM_Vecd2){-300, 50},(struct CM_Vecd2){.5, .5}, -1, sprite2, ((struct CM_ImageMeta*)sprite2->metaData)->dim, 1, -1, &entity)) return CM_BAD;
     if(CM_InitTestCmp((struct CM_TestComponent**)&cmp, 7)) return CM_BAD;
     ArrayPush(entity->components, &cmp);
   }
@@ -51,7 +51,7 @@ enum CM_Error CM_InitEntities(){
 }
 
 enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int layer, struct CM_Resource* _spriteSheet,
-                            struct CM_Veci2 _spritePartDim, double _frameIntervalSeconds, struct CM_Entity** out){
+                            struct CM_Veci2 _spritePartDim, int _frameNum, double _frameIntervalSeconds, struct CM_Entity** out){
   assert(entities != NULL);
   struct CM_Entity* new = malloc(sizeof(struct CM_Entity));
   if(new == NULL){
@@ -64,8 +64,9 @@ enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int laye
   new->layer = layer;
   new->sprite = _spriteSheet;
   new->spritePartDim = _spritePartDim;
-  new->frameIntervalSeconds = _frameIntervalSeconds;
+  new->frameIntervalSec = _frameIntervalSeconds;
   new->curFrame = 0;
+  new->numFrames = _frameNum;
   new->components = InitArray(void*, 16);
 
   ArrayPush(entities, &new);
@@ -80,6 +81,13 @@ void CM_UpdateEntities(double deltaTime){
   for(size_t i = 0; i < GetArrayLen(entities); i++){
     for (size_t c = 0; c < GetArrayLen(entities[i]->components); c++){
       ((struct AnyComponent*)entities[i]->components[c])->update(entities[i]->components[c], deltaTime);
+    }
+    if(entities[i]->frameIntervalSec == -1) continue;
+
+    entities[i]->curFrameIntervalSec += deltaTime;
+    if(entities[i]->curFrameIntervalSec > entities[i]->frameIntervalSec){
+      entities[i]->curFrame++;
+      entities[i]->curFrameIntervalSec = 0;
     }
   }
 }

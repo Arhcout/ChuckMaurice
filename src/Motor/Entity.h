@@ -12,8 +12,10 @@ struct CM_Entity{
   int layer;
   struct CM_Resource* sprite;
   struct CM_Veci2 spritePartDim;
-  double frameIntervalSeconds;
+  double frameIntervalSec;
+  double curFrameIntervalSec;
   int curFrame;
+  int numFrames;
   void** components;
 };
 
@@ -23,7 +25,7 @@ enum CM_Component{
 
 enum CM_Error CM_InitEntities(); // TODO: add JSON representation of entities
 enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int layer, struct CM_Resource* _spriteSheet,
-                            struct CM_Veci2 _spritePartDim, double _frameIntervalSeconds, struct CM_Entity** out);
+                            struct CM_Veci2 _frameSize, int _frameNum, double _frameIntervalSeconds, struct CM_Entity** out);
 void CM_UpdateEntities(double deltaTime);
 void CM_DestroyEntities();
 

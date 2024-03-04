@@ -42,7 +42,7 @@ void CM_Render(){
       .h = cur->spritePartDim.y * cur->scale.y
     };
     SDL_Rect rectS = {
-      .x = cur->spritePartDim.x*cur->curFrame,
+      .x = cur->spritePartDim.x*(cur->curFrame % cur->numFrames),
       .y = 0,
       .w = cur->spritePartDim.x,
       .h = cur->spritePartDim.y
