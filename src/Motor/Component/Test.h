@@ -2,11 +2,13 @@
 #include "../Entity.h"
 #include "../Error.h"
 
-struct CM_TestComponent{
+struct TestComponent{
   fnUpdateComponent update;
   fnDestroyComponent destroy;
+  int type;
+
   int value; 
 };
 
-enum CM_Error CM_InitTestCmp(struct CM_TestComponent** out, int value);
+enum Error InitTestCmp(struct TestComponent** out, int value);
 

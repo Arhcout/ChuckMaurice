@@ -18,45 +18,45 @@ struct AnyComponent{
 };
 
 // If lag add multithreading
-static struct CM_Entity** entities;
+static struct Entity** entities;
 
-enum CM_Error CM_InitEntities(){
-  entities = InitArray(struct CM_Entity*, NUM_ENTITY_AT_START);
-  if(entities == NULL) return CM_BAD;
+enum Error InitEntities(){
+  entities = InitArray(struct Entity*, NUM_ENTITY_AT_START);
+  if(entities == NULL) return BAD;
 
   // TODO: Read JSON to add all entities
   
-  struct CM_Resource* sprite1;
-  CM_LoadResource("entity.png", &sprite1);
-  struct CM_Resource* sprite2;
-  CM_LoadResource("entity2.png", &sprite2);
+  struct Resource* sprite1;
+  LoadResource("entity.png", &sprite1);
+  struct Resource* sprite2;
+  LoadResource("entity2.png", &sprite2);
 
   // Hard coded
   {
-    struct CM_Entity* entity;
+    struct Entity* entity;
     void* cmp;
-    if(CM_InitEntity((struct CM_Vecd2){300, -50},(struct CM_Vecd2){10, 10}, 1, sprite1, (struct CM_Veci2){16,16}, 4, .5, &entity)) return CM_BAD;
-    if(CM_InitTestCmp((struct CM_TestComponent**)&cmp, 78)) return CM_BAD;
+    if(InitEntity((struct Vecd2){300, -50},(struct Vecd2){10, 10}, 1, sprite1, (struct Veci2){16,16}, 4, .5, &entity)) return BAD;
+    if(InitTestCmp((struct TestComponent**)&cmp, 78)) return BAD;
     ArrayPush(entity->components, &cmp);
   }
   {
-    struct CM_Entity* entity;
+    struct Entity* entity;
     void* cmp;
-    if(CM_InitEntity((struct CM_Vecd2){-300, 50},(struct CM_Vecd2){.5, .5}, -1, sprite2, ((struct CM_ImageMeta*)sprite2->metaData)->dim, 1, -1, &entity)) return CM_BAD;
-    if(CM_InitTestCmp((struct CM_TestComponent**)&cmp, 7)) return CM_BAD;
+    if(InitEntity((struct Vecd2){-300, 50},(struct Vecd2){.5, .5}, -1, sprite2, ((struct ImageMeta*)sprite2->metaData)->dim, 1, -1, &entity)) return BAD;
+    if(InitTestCmp((struct TestComponent**)&cmp, 7)) return BAD;
     ArrayPush(entity->components, &cmp);
   }
 
-  return CM_OK;
+  return OK;
 }
 
-enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int layer, struct CM_Resource* _spriteSheet,
-                            struct CM_Veci2 _spritePartDim, int _frameNum, double _frameIntervalSeconds, struct CM_Entity** out){
+enum Error InitEntity(struct Vecd2 pos, struct Vecd2 scale, int layer, struct Resource* _spriteSheet,
+                            struct Veci2 _spritePartDim, int _frameNum, double _frameIntervalSeconds, struct Entity** out){
   assert(entities != NULL);
-  struct CM_Entity* new = malloc(sizeof(struct CM_Entity));
+  struct Entity* new = malloc(sizeof(struct Entity));
   if(new == NULL){
-    CM_MALLOC_ERROR;
-    return CM_BAD;
+    MALLOC_ERROR;
+    return BAD;
   }
   if(out) *out = new;
   new->pos = pos;
@@ -70,14 +70,14 @@ enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int laye
   new->components = InitArray(void*, 16);
 
   ArrayPush(entities, &new);
-  return CM_OK;
+  return OK;
 }
 
-struct CM_Entity** CM_GetEntities(){
+struct Entity** GetEntities(){
   return entities;
 }
 
-void CM_UpdateEntities(double deltaTime){
+void UpdateEntities(double deltaTime){
   for(size_t i = 0; i < GetArrayLen(entities); i++){
     for (size_t c = 0; c < GetArrayLen(entities[i]->components); c++){
       ((struct AnyComponent*)entities[i]->components[c])->update(entities[i]->components[c], deltaTime);
@@ -92,7 +92,7 @@ void CM_UpdateEntities(double deltaTime){
   }
 }
 
-void CM_DestroyEntities(){
+void DestroyEntities(){
   for (size_t i = 0; i < GetArrayLen(entities); i++) {
     free(entities[i]);
   }

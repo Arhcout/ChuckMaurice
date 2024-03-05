@@ -10,34 +10,34 @@
 #include <assert.h>
 #include <stddef.h>
 
-static const struct CM_Resource* _bg;
+static const struct Resource* _bg;
 
-void CM_SetBackground(const struct CM_Resource* bg){
+void SetBackground(const struct Resource* bg){
   assert(bg != NULL);
   _bg = bg;
 }
 
-void CM_Render(){
+void Render(){
   SDL_Renderer* ren;
-  enum CM_Error res = CM_GetRenderer(&ren);
-  assert(res == CM_OK);
+  enum Error res = GetRenderer(&ren);
+  assert(res == OK);
 
   SDL_RenderClear(ren);
 
   // Render backgroung
   if(_bg != NULL){
-    struct CM_ImageMeta* bgMeta= _bg->metaData;
-    SDL_Rect bgDRect = {.x = 0 - CM_cameraPos.x, .y = 0 - CM_cameraPos.y, .w = bgMeta->dim.x, .h = bgMeta->dim.y};
+    struct ImageMeta* bgMeta= _bg->metaData;
+    SDL_Rect bgDRect = {.x = 0 - cameraPos.x, .y = 0 - cameraPos.y, .w = bgMeta->dim.x, .h = bgMeta->dim.y};
     SDL_RenderCopy(ren, _bg->data, NULL, &bgDRect);
   }
   
-  struct CM_Entity** entities = CM_GetEntities();
+  struct Entity** entities = GetEntities();
   for(size_t i = 0; i < GetArrayLen(entities); i++){
-    struct CM_Entity* cur = entities[i];
+    struct Entity* cur = entities[i];
     if(!cur->sprite) continue;
     SDL_Rect rectD = {
-      .x = cur->pos.x - CM_cameraPos.x,
-      .y = cur->pos.y - CM_cameraPos.y,
+      .x = cur->pos.x - cameraPos.x,
+      .y = cur->pos.y - cameraPos.y,
       .w = cur->spritePartDim.x * cur->scale.x,
       .h = cur->spritePartDim.y * cur->scale.y
     };
@@ -50,20 +50,20 @@ void CM_Render(){
     SDL_RenderCopy(ren, cur->sprite->data, &rectS, &rectD);
   }
   
-  struct CM_ImageMeta* playerMeta = CM_GetPlayerSprite()->metaData;
+  struct ImageMeta* playerMeta = GetPlayerSprite()->metaData;
 
   int w,h;
   SDL_Window* win;
-  CM_GetWindow(&win);
+  GetWindow(&win);
   SDL_GetWindowSize(win, &w, &h);
 
   SDL_Rect playerDRect = {
-    .x = CM_GetPlayerPos()->x - CM_cameraPos.x + (playerMeta->dim.x*CM_GetPlayerScale()->x)/2.0 + w/2.0,
-    .y = CM_GetPlayerPos()->y - CM_cameraPos.y + (playerMeta->dim.y*CM_GetPlayerScale()->y)/2.0 + h/2.0,
-    .w = playerMeta->dim.x * CM_GetPlayerScale()->x,
-    .h = playerMeta->dim.y * CM_GetPlayerScale()->y
+    .x = GetPlayerPos()->x - cameraPos.x + (playerMeta->dim.x*GetPlayerScale()->x)/2.0 + w/2.0,
+    .y = GetPlayerPos()->y - cameraPos.y + (playerMeta->dim.y*GetPlayerScale()->y)/2.0 + h/2.0,
+    .w = playerMeta->dim.x * GetPlayerScale()->x,
+    .h = playerMeta->dim.y * GetPlayerScale()->y
   };
-  SDL_RenderCopy(ren, CM_GetPlayerSprite()->data, NULL, &playerDRect);
+  SDL_RenderCopy(ren, GetPlayerSprite()->data, NULL, &playerDRect);
 
 
   SDL_RenderPresent(ren);

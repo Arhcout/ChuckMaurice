@@ -2,9 +2,9 @@
 #include <stdio.h>
 
 int main(void){
-  if(CM_Init() == CM_OK)
-    CM_Run();
+  if(Init() == OK)
+    Run();
 
-  CM_Quit();
+  Quit();
   return 0;
 }

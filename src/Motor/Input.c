@@ -7,11 +7,11 @@
 
 static bool _keys[322];
 
-void CM_InputInit(){
+void InputInit(){
   memset(_keys, false, 322*sizeof(bool));
 }
 
-enum CM_Error CM_InputPoll(SDL_Event* event){
+enum Error InputPoll(SDL_Event* event){
   assert(event != NULL);
 
   switch (event->type) {
@@ -23,19 +23,19 @@ enum CM_Error CM_InputPoll(SDL_Event* event){
       _keys[event->key.keysym.sym % 322] = false;
       break;
   }
-  return CM_OK;
+  return OK;
 }
 
-bool CM_IsKeyDown(SDL_KeyCode key){
+bool IsKeyDown(SDL_KeyCode key){
   return _keys[key];
 }
 
-void CM_GetMousePosition(struct CM_Veci2* out_mousePos){
+void GetMousePosition(struct Veci2* out_mousePos){
   assert(out_mousePos != NULL);
   SDL_GetMouseState(&out_mousePos->x, &out_mousePos->y);
 }
 
-bool CM_GetButtonState(enum CM_MouseButtons button){
+bool GetButtonState(enum MouseButtons button){
   return SDL_GetMouseState(NULL, NULL) == (uint32_t)SDL_BUTTON(button);
 }
 

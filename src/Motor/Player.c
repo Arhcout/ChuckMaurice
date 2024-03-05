@@ -8,37 +8,37 @@
 #include <SDL2/SDL_video.h>
 
 struct Player{
-  struct CM_Vecd2 position;
-  struct CM_Vecd2 scale;
-  struct CM_Resource* sprite;
+  struct Vecd2 position;
+  struct Vecd2 scale;
+  struct Resource* sprite;
   int layer;
 };
 static struct Player _player;
 
-enum CM_Error CM_InitPlayer(struct CM_Resource* spriteSheet){
+enum Error InitPlayer(struct Resource* spriteSheet){
   _player.sprite = spriteSheet;
   _player.scale.x = 10;
   _player.scale.y = 10;
-  return CM_OK;
+  return OK;
 }
 
-void CM_PlayerUpdate(double deltaTime){
-  if(CM_IsKeyDown(SDLK_z)) _player.position.y -= 500.0 * deltaTime;
-  if(CM_IsKeyDown(SDLK_q)) _player.position.x -= 500.0 * deltaTime;
-  if(CM_IsKeyDown(SDLK_s)) _player.position.y += 500.0 * deltaTime;
-  if(CM_IsKeyDown(SDLK_d)) _player.position.x += 500.0 * deltaTime;
-  CM_cameraPos.x = _player.position.x;
-  CM_cameraPos.y = _player.position.y;
+void PlayerUpdate(double deltaTime){
+  if(IsKeyDown(SDLK_z)) _player.position.y -= 500.0 * deltaTime;
+  if(IsKeyDown(SDLK_q)) _player.position.x -= 500.0 * deltaTime;
+  if(IsKeyDown(SDLK_s)) _player.position.y += 500.0 * deltaTime;
+  if(IsKeyDown(SDLK_d)) _player.position.x += 500.0 * deltaTime;
+  cameraPos.x = _player.position.x;
+  cameraPos.y = _player.position.y;
 }
 
-const struct CM_Vecd2* CM_GetPlayerPos(){
+const struct Vecd2* GetPlayerPos(){
   return &_player.position;
 }
 
-const struct CM_Vecd2* CM_GetPlayerScale(){
+const struct Vecd2* GetPlayerScale(){
   return &_player.scale;
 }
 
-const struct CM_Resource* CM_GetPlayerSprite(){
+const struct Resource* GetPlayerSprite(){
   return _player.sprite;
 }

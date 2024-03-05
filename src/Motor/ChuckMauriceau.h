@@ -2,8 +2,8 @@
 #include "Error.h"
 
 //Initialize the engine
-enum CM_Error CM_Init();
+enum Error Init();
 //Starts the game loop
-enum CM_Error CM_Run();
+enum Error Run();
 //Cleanup the engine
-void CM_Quit();
+void Quit();

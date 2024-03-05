@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum CM_Error UpdateTestCmp(void* self, double deltaTime){
-  struct CM_TestComponent* this = self;
-  CM_LOG("From testCmp: value %d dt: %f\n", this->value, deltaTime);
-  return CM_OK;
+enum Error UpdateTestCmp(void* self, double deltaTime){
+  struct TestComponent* this = self;
+  LOG("From testCmp: value %d dt: %f\n", this->value, deltaTime);
+  return OK;
 }
 
 void DestroyTestCmp(void* self){
@@ -14,17 +14,17 @@ void DestroyTestCmp(void* self){
   return;
 }
 
-enum CM_Error CM_InitTestCmp(struct CM_TestComponent** out, int value){
-  *out = malloc(sizeof(struct CM_TestComponent));
+enum Error InitTestCmp(struct TestComponent** out, int value){
+  *out = malloc(sizeof(struct TestComponent));
   if(!*out){
-    CM_MALLOC_ERROR;
-    return CM_BAD;
+    MALLOC_ERROR;
+    return BAD;
   }
 
   (*out)->value = value;
   (*out)->update = UpdateTestCmp;
   (*out)->destroy = DestroyTestCmp;
   
-  return CM_OK;
+  return OK;
 }
 

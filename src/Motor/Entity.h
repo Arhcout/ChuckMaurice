@@ -3,15 +3,15 @@
 #include "Error.h"
 #include "Ressource.h"
 
-typedef enum CM_Error (*fnUpdateComponent)(void* self, double deltaTime);
+typedef enum Error (*fnUpdateComponent)(void* self, double deltaTime);
 typedef void (*fnDestroyComponent)(void* self);
 
-struct CM_Entity{
-  struct CM_Vecd2 pos;
-  struct CM_Vecd2 scale;
+struct Entity{
+  struct Vecd2 pos;
+  struct Vecd2 scale;
   int layer;
-  struct CM_Resource* sprite;
-  struct CM_Veci2 spritePartDim;
+  struct Resource* sprite;
+  struct Veci2 spritePartDim;
   double frameIntervalSec;
   double curFrameIntervalSec;
   int curFrame;
@@ -19,14 +19,15 @@ struct CM_Entity{
   void** components;
 };
 
-enum CM_Component{
-  CM_TEST_COMPONENT
+enum Component{
+  TEST_COMPONENT
 };
 
-enum CM_Error CM_InitEntities(); // TODO: add JSON representation of entities
-enum CM_Error CM_InitEntity(struct CM_Vecd2 pos, struct CM_Vecd2 scale, int layer, struct CM_Resource* _spriteSheet,
-                            struct CM_Veci2 _frameSize, int _frameNum, double _frameIntervalSeconds, struct CM_Entity** out);
-void CM_UpdateEntities(double deltaTime);
-void CM_DestroyEntities();
+enum Error InitEntities(); // TODO: add JSON representation of entities
+enum Error InitEntity(struct Vecd2 pos, struct Vecd2 scale, int layer, struct Resource* _spriteSheet,
+                            struct Veci2 _frameSize, int _frameNum, double _frameIntervalSeconds, struct Entity** out);
+void UpdateEntities(double deltaTime);
+void DestroyEntities();
 
-struct CM_Entity** CM_GetEntities();
+
+struct Entity** GetEntities();
