@@ -3,24 +3,8 @@ LD=gcc
 GDB=gdb
 AR=ar
 
-BUILD_DIR=$(CURDIR)/build
-SRC_DIR=src
-MOTOR_SRC_DIR=$(SRC_DIR)/Motor
-EDITOR_SRC_DIR=$(SRC_DIR)/Editor
+BUILD_DIR=$(CURDIR)/../../build
 
-MOTOR_SRC=$(shell pushd  $(MOTOR_SRC_DIR)  > /dev/null; find . -name '*.c';popd > /dev/null)
-MOTOR_OBJ=$(MOTOR_SRC:%=$(BUILD_DIR)/%.o)
+TEST=$(BUILD_DIR)/test
+ENGINE=$(BUILD_DIR)/ChuckMauriceau.a
 
-EDITOR_SRC=$(shell pushd $(EDITOR_SRC_DIR) > /dev/null; find . -name '*.c';popd > /dev/null)
-EDITOR_OBJ=$(EDITOR_SRC:%=$(BUILD_DIR)/%.o)
-
-HDRS=
-EDITOR_LIBS=$(shell $$HOME/opt/SDL2/bin/sdl2-config --libs) -lSDL2_mixer -lSDL2_image
-
-EDITOR_CFLAGS=$(shell $$HOME/opt/SDL2/bin/sdl2-config --cflags) -Wall -Wextra -g -I$(CURDIR)/$(MOTOR_SRC_DIR)
-MOTOR_CFLAGS=-Wall -Wextra -g
-
-EDITOR=ChuckMaurice
-MOTOR=ChuckMauriceau.a
-
-export
