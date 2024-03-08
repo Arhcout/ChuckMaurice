@@ -1,7 +1,7 @@
 #include "Audio.h"
+#include "Array.h"
 #include "Error.h"
 #include "Ressource.h"
-#include "Array.h"
 #include <SDL2/SDL_mixer.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -9,15 +9,10 @@
 
 static float _masterVolume = 1.0f;
 
-static bool _VecMatch_AudioChannel(const void* element, va_list args){
-  int channel = va_arg(args, int);
-  const struct Resource* elm = *(void**)element;
-  return ((struct AudioMeta*)elm->metaData)->channel == channel;
-}
-
 void _Callback_ChannelFinished(int channel){
   struct Resource** res = GetResources();
-  struct Resource** sound = FilterArray(res, _VecMatch_AudioChannel, channel);
+  struct Resource** sound = CopyArray(res);
+  FilterArray(sound, ((struct AudioMeta*)item->metaData)->channel == channel);
   ((struct AudioMeta*)(*sound)->metaData)->isPlaying = false;
   free(sound);
 }

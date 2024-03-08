@@ -32,19 +32,14 @@ enum Error InitEntities(){
   LoadResource("entity2.png", &sprite2);
 
   // Hard coded
-  {
-    struct Entity* entity;
-    void* cmp;
-    if(InitEntity((struct Vecd2){300, -50},(struct Vecd2){10, 10}, 1, sprite1, (struct Veci2){16,16}, 4, .5, &entity)) return BAD;
-    if(InitTestCmp((struct TestComponent**)&cmp, 78)) return BAD;
-    ArrayPush(entity->components, &cmp);
-  }
-  {
-    struct Entity* entity;
-    void* cmp;
-    if(InitEntity((struct Vecd2){-300, 50},(struct Vecd2){.5, .5}, -1, sprite2, ((struct ImageMeta*)sprite2->metaData)->dim, 1, -1, &entity)) return BAD;
-    if(InitTestCmp((struct TestComponent**)&cmp, 7)) return BAD;
-    ArrayPush(entity->components, &cmp);
+  for(int x = 0; x < 100; x++){
+    for(int y = 0; y < 100; y++){
+      struct Entity* entity;
+      struct TestComponent* cmp;
+      if(InitEntity((struct Vecd2){x*160, y*160},(struct Vecd2){10, 10}, 1, sprite1, (struct Veci2){16,16}, 4, .5, &entity)) return BAD;
+      if(InitTestCmp((struct TestComponent**)&cmp, y*10+x)) return BAD;
+      ArrayPush(entity->components, cmp);
+    }
   }
 
   return OK;
@@ -69,7 +64,7 @@ enum Error InitEntity(struct Vecd2 pos, struct Vecd2 scale, int layer, struct Re
   new->numFrames = _frameNum;
   new->components = InitArray(void*, 16);
 
-  ArrayPush(entities, &new);
+  ArrayPush(entities, new);
   return OK;
 }
 

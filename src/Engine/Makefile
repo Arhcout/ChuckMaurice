@@ -19,5 +19,5 @@ $(ENGINE): $(OBJ)
 
 %.c.o: %.c
 	@echo !== COMPILING $< ==!
-	$(CC) $(ENGINE_CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 

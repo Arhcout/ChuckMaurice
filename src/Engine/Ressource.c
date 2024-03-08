@@ -86,7 +86,7 @@ enum Error LoadResource(char* path, struct Resource**  out_data){
   }
 
 
-  ArrayPush(_res, out_data);
+  ArrayPush(_res, *out_data);
   return OK;
 }
 

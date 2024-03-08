@@ -5,7 +5,7 @@
 
 enum Error UpdateTestCmp(void* self, double deltaTime){
   struct TestComponent* this = self;
-  LOG("From testCmp: value %d dt: %f\n", this->value, deltaTime);
+  //LOG("From testCmp: value %d dt: %f\n", this->value, deltaTime);
   return OK;
 }
 

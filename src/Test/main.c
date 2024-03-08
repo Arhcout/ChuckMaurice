@@ -1,4 +1,6 @@
 #include "ChuckMauriceau.h"
+#include "Array.h"
+#include <stddef.h>
 #include <stdio.h>
 
 int main(void){

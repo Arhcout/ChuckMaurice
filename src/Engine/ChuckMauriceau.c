@@ -65,8 +65,11 @@ enum Error Run(){
   double deltaTime = 0;
   bool running = true;
   SDL_Event e;
+  int countedFrames = 0;
+  double timer = 0;
   while (running){
     clock_t deltaStart = clock();
+    
     while (SDL_PollEvent(&e)){
       InputPoll(&e);
       switch (e.type) {
@@ -85,6 +88,12 @@ enum Error Run(){
     UpdateEntities(deltaTime);
 
     Render();
+    countedFrames++;
+    timer += deltaTime;
+    if(timer >= 1){
+      timer = 0;
+      LOG("FPS: %d\n", countedFrames);
+    }
     deltaTime = (double)(clock() - deltaStart) / CLOCKS_PER_SEC;
   }
   return OK;

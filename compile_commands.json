@@ -7,12 +7,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Input.c.o",
+      "Input.c.o",
       "Input.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Input.c",
-    "output": "/home/me/Proj/Maurice/build/Input.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Input.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Input.c.o"
   },
   {
     "arguments": [
@@ -22,12 +22,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Camera.c.o",
+      "Camera.c.o",
       "Camera.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Camera.c",
-    "output": "/home/me/Proj/Maurice/build/Camera.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Camera.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Camera.c.o"
   },
   {
     "arguments": [
@@ -37,27 +37,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Time.c.o",
-      "Time.c"
-    ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Time.c",
-    "output": "/home/me/Proj/Maurice/build/Time.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-Wall",
-      "-Wextra",
-      "-g",
-      "-o",
-      "/home/me/Proj/Maurice/build/./Audio.c.o",
+      "Audio.c.o",
       "Audio.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Audio.c",
-    "output": "/home/me/Proj/Maurice/build/Audio.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Audio.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Audio.c.o"
   },
   {
     "arguments": [
@@ -67,12 +52,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Array.c.o",
+      "Array.c.o",
       "Array.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Array.c",
-    "output": "/home/me/Proj/Maurice/build/Array.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Array.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Array.c.o"
   },
   {
     "arguments": [
@@ -82,12 +67,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Window.c.o",
+      "Window.c.o",
       "Window.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Window.c",
-    "output": "/home/me/Proj/Maurice/build/Window.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Window.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Window.c.o"
   },
   {
     "arguments": [
@@ -97,12 +82,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Entity.c.o",
+      "Entity.c.o",
       "Entity.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Entity.c",
-    "output": "/home/me/Proj/Maurice/build/Entity.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Entity.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Entity.c.o"
   },
   {
     "arguments": [
@@ -112,12 +97,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Component/Test.c.o",
+      "Component/Test.c.o",
       "Component/Test.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Component/Test.c",
-    "output": "/home/me/Proj/Maurice/build/Component/Test.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Component/Test.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Component/Test.c.o"
   },
   {
     "arguments": [
@@ -127,12 +112,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Ressource.c.o",
+      "Ressource.c.o",
       "Ressource.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Ressource.c",
-    "output": "/home/me/Proj/Maurice/build/Ressource.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Ressource.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Ressource.c.o"
   },
   {
     "arguments": [
@@ -142,12 +127,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./hashmap/hashmap.c.o",
+      "hashmap/hashmap.c.o",
       "hashmap/hashmap.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/hashmap/hashmap.c",
-    "output": "/home/me/Proj/Maurice/build/hashmap/hashmap.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/hashmap/hashmap.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/hashmap/hashmap.c.o"
   },
   {
     "arguments": [
@@ -157,12 +142,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Player.c.o",
+      "Player.c.o",
       "Player.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Player.c",
-    "output": "/home/me/Proj/Maurice/build/Player.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Player.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Player.c.o"
   },
   {
     "arguments": [
@@ -172,12 +157,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./ChuckMauriceau.c.o",
+      "ChuckMauriceau.c.o",
       "ChuckMauriceau.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/ChuckMauriceau.c",
-    "output": "/home/me/Proj/Maurice/build/ChuckMauriceau.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/ChuckMauriceau.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/ChuckMauriceau.c.o"
   },
   {
     "arguments": [
@@ -187,12 +172,12 @@
       "-Wextra",
       "-g",
       "-o",
-      "/home/me/Proj/Maurice/build/./Renderer.c.o",
+      "Renderer.c.o",
       "Renderer.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Motor",
-    "file": "/home/me/Proj/Maurice/src/Motor/Renderer.c",
-    "output": "/home/me/Proj/Maurice/build/Renderer.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Engine",
+    "file": "/home/me/Proj/Maurice/src/Engine/Renderer.c",
+    "output": "/home/me/Proj/Maurice/src/Engine/Renderer.c.o"
   },
   {
     "arguments": [
@@ -203,13 +188,13 @@
       "-Wall",
       "-Wextra",
       "-g",
-      "-I/home/me/Proj/Maurice/src/Motor",
+      "-I/home/me/Proj/Maurice/src/Test/../Engine",
       "-o",
-      "/home/me/Proj/Maurice/build/./main.c.o",
+      "main.c.o",
       "main.c"
     ],
-    "directory": "/home/me/Proj/Maurice/src/Editor",
-    "file": "/home/me/Proj/Maurice/src/Editor/main.c",
-    "output": "/home/me/Proj/Maurice/build/main.c.o"
+    "directory": "/home/me/Proj/Maurice/src/Test",
+    "file": "/home/me/Proj/Maurice/src/Test/main.c",
+    "output": "/home/me/Proj/Maurice/src/Test/main.c.o"
   }
 ]
